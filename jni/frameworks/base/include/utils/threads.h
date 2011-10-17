@@ -25,7 +25,6 @@
 # include <pthread.h>
 #endif
 
-//#include "/local/code/android/2.3.4/bionic/libc/include/pthread.h"
 
 // ------------------------------------------------------------------
 // C API

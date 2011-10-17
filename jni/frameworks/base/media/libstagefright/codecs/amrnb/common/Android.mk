@@ -69,6 +69,9 @@ LOCAL_C_INCLUDES := \
 LOCAL_CFLAGS := \
         -DOSCL_UNUSED_ARG= -DOSCL_IMPORT_REF= -DOSCL_EXPORT_REF=
 
+#LOCAL_MODULE := stagefright_amrnb_common
 LOCAL_MODULE := libstagefright_amrnb_common
 
+#include $(PREBUILT_SHARED_LIBRARY)
 include $(BUILD_SHARED_LIBRARY)
+

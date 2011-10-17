@@ -81,7 +81,7 @@ public:
             ROT_270   = HAL_TRANSFORM_ROT_270,
         };
         BufferHeap();
-        
+
         BufferHeap(uint32_t w, uint32_t h,
                 int32_t hor_stride, int32_t ver_stride, 
                 PixelFormat format, const sp<IMemoryHeap>& heap);

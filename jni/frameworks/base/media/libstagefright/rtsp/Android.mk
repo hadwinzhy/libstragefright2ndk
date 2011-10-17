@@ -34,7 +34,7 @@ endif
 include $(BUILD_STATIC_LIBRARY)
 
 ################################################################################
-
+ifdef 0
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:=         \
@@ -48,7 +48,7 @@ LOCAL_STATIC_LIBRARIES := \
 
 LOCAL_C_INCLUDES:= \
 	$(JNI_H_INCLUDE) \
-	frameworks/base/media/libstagefright \
+	$(TOP)/frameworks/base/media/libstagefright \
 	$(TOP)/frameworks/base/include/media/stagefright/openmax
 
 LOCAL_CFLAGS += -Wno-multichar
@@ -58,3 +58,4 @@ LOCAL_MODULE_TAGS := debug
 LOCAL_MODULE:= rtp_test
 
 include $(BUILD_EXECUTABLE)
+endif

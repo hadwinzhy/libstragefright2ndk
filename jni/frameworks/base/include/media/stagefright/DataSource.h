@@ -24,8 +24,8 @@
 #include <utils/KeyedVector.h>
 #include <utils/List.h>
 #include <utils/RefBase.h>
-//#include <utils/threads.h>
-#include "threads.h"
+#include <utils/threads.h>
+//#include "threads.h"
 
 namespace android {
 

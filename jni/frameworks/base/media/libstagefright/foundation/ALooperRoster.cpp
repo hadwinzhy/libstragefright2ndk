@@ -23,7 +23,6 @@
 #include "ADebug.h"
 #include "AHandler.h"
 #include "AMessage.h"
-
 namespace android {
 
 ALooperRoster::ALooperRoster()

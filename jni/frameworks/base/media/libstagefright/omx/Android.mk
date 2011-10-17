@@ -33,6 +33,8 @@ LOCAL_SHARED_LIBRARIES :=       \
         libcutils               \
         libstagefright_color_conversion
 
+LOCAL_LDLIBS += -lbinder -lmedia -lutils -lui -lcutils
+
 ifneq ($(BUILD_WITHOUT_PV),true)
 LOCAL_SHARED_LIBRARIES += \
         libopencore_common

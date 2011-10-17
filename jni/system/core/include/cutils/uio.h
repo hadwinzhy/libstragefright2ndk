@@ -30,11 +30,11 @@ extern "C" {
 
 #include <stddef.h>
 
-struct iovec {
+/*struct iovec {
     const void*  iov_base;
     size_t       iov_len;
 };
-
+*/
 extern int  readv( int  fd, struct iovec*  vecs, int  count );
 extern int  writev( int  fd, const struct iovec*  vecs, int  count );
 

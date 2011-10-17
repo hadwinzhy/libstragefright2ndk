@@ -17,6 +17,8 @@ LOCAL_SHARED_LIBRARIES :=       \
         libsurfaceflinger_client\
         libcamera_client
 
+LOCAL_LDFLAGS += -llog -lbinder -lmedia -lutils -lui -lcutils -lsurfaceflinger_client -lcamera_client
+
 LOCAL_MODULE:= libstagefright_color_conversion
 
 include $(BUILD_SHARED_LIBRARY)

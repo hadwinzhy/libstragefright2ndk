@@ -14,7 +14,7 @@ LOCAL_SRC_FILES:=               \
     hexdump.cpp
 
 LOCAL_C_INCLUDES:= \
-    frameworks/base/include/media/stagefright/foundation
+    $(TOP)/frameworks/base/include/media/stagefright/foundation
 
 LOCAL_SHARED_LIBRARIES := \
         libbinder         \
@@ -28,6 +28,9 @@ LOCAL_SHARED_LIBRARIES := \
         libcamera_client
 
 LOCAL_CFLAGS += -Wno-multichar
+
+LOCAL_LDFLAGS +=-llog -lbinder -lmedia -lutils -lcutils -lui -lsonivox -lvorbisidec -lsurfaceflinger_client -lcamera_client
+
 
 LOCAL_MODULE:= libstagefright_foundation
 

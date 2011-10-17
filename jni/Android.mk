@@ -1,24 +1,39 @@
 #my variable start by Hadwin
 
 TOP:=$(call my-dir)
-LOCAL_PATH:= $(call my-dir)/frameworks/base/media/libstagefright/
-
-#in ./build/core/main.mk:286
-BUILD_WITHOUT_PV := true
-
-
-JNI_H_INCLUDE:=$(TOP)/frameworks/base/include/ \
-	$(TOP)/system/core/include/
-#	$(TOP)/hardware/libhardware/include/ \
-	$(TOP)/system/core/include/  \
-	$(TOP)/out/target/product/crespo/obj/include/ \
-	$(LOCAL_PATH)/include/
-
-
-#my variable end by Hadwin
-
+LOCAL_PATH:= $(call my-dir)/frameworks/base/media/libstagefright
 
 include $(CLEAR_VARS)
+#in ./build/core/main.mk:286
+BUILD_WITHOUT_PV := true
+# in aacenc/Android.mk
+
+####
+#1. external/tremolo used in  OggExtractor.cpp:36
+#
+#2. out/target/product/crespo/obj/include/ used in StagefrightMediaScanner.cpp:27
+##
+SYS_INCLUDE := \
+	$(TOP)/frameworks/base/include/			\
+	$(TOP)/system/core/include/			\
+	$(TOP)/hardware/libhardware/include/		\
+	$(TOP)/external/tremolo				\
+	$(TOP)/external/libvpx				\
+	$(TOP)/external/openssl/include			\
+	$(TOP)/out/target/product/crespo/obj/include/ 	
+
+
+APP_INCLUDE := \
+	$(LOCAL_PATH)/include				\
+	$(TOP)/frameworks/base/media/libstagefright/codecs/common/include \
+
+TARGET_C_INCLUDES += \
+	$(SYS_INCLUDE)		  \
+	$(APP_INCLUDE)
+
+TARGET_CFLAGS += -Wno-multichar  -DHAVE_PTHREADS
+
+#my variable end by Hadwin
 
 include $(TOP)/frameworks/base/media/libstagefright/codecs/common/Config.mk
 
@@ -64,7 +79,6 @@ LOCAL_SRC_FILES:=                         \
         string.cpp
 
 LOCAL_C_INCLUDES:= \
-	$(JNI_H_INCLUDE) \
         $(TOP)/frameworks/base/include/media/stagefright/openmax \
         $(TOP)/external/tremolo \
         $(TOP)/frameworks/base/media/libstagefright/rtsp
@@ -79,6 +93,9 @@ LOCAL_SHARED_LIBRARIES := \
         libvorbisidec     \
         libsurfaceflinger_client \
         libcamera_client
+
+LOCAL_LDFLAGS += -lbinder  -llog -lmedia -lutils -lcutils -lui -lsonivox -lvorbisidec -lsurfaceflinger_client -lcamera_client 
+
 
 LOCAL_STATIC_LIBRARIES := \
         libstagefright_aacdec \
@@ -122,8 +139,6 @@ endif
 ifeq ($(TARGET_OS)-$(TARGET_SIMULATOR),linux-true)
         LOCAL_LDLIBS += -lpthread
 endif
-
-LOCAL_CFLAGS += -Wno-multichar 
 
 
 LOCAL_MODULE:= libstagefright
