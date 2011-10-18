@@ -94,7 +94,7 @@ LOCAL_SHARED_LIBRARIES := \
         libsurfaceflinger_client \
         libcamera_client
 
-LOCAL_LDFLAGS += -lbinder  -llog -lmedia -lutils -lcutils -lui -lsonivox -lvorbisidec -lsurfaceflinger_client -lcamera_client 
+LOCAL_LDFLAGS +=-llog -Llib -lbinder -lmedia -lutils -lcutils -lui -lsonivox -lvorbisidec -lsurfaceflinger_client -lcamera_client 
 
 
 LOCAL_STATIC_LIBRARIES := \

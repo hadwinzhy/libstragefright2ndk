@@ -29,7 +29,7 @@ LOCAL_SHARED_LIBRARIES := \
 
 LOCAL_CFLAGS += -Wno-multichar
 
-LOCAL_LDFLAGS +=-llog -lbinder -lmedia -lutils -lcutils -lui -lsonivox -lvorbisidec -lsurfaceflinger_client -lcamera_client
+LOCAL_LDFLAGS +=-llog -L$(TOP)/lib -lbinder -lmedia -lutils -lcutils -lui -lsonivox -lvorbisidec -lsurfaceflinger_client -lcamera_client
 
 
 LOCAL_MODULE:= libstagefright_foundation

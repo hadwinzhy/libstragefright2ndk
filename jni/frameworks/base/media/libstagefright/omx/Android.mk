@@ -3,7 +3,7 @@ include $(CLEAR_VARS)
 
 ifneq ($(BUILD_WITHOUT_PV),true)
 # Set up the OpenCore variables.
-include external/opencore/Config.mk
+include $(TOP)/external/opencore/Config.mk
 LOCAL_C_INCLUDES := $(PV_INCLUDES)
 LOCAL_CFLAGS := $(PV_CFLAGS_MINUS_VISIBILITY)
 endif
@@ -11,7 +11,7 @@ endif
 LOCAL_C_INCLUDES += $(JNI_H_INCLUDE)
 
 LOCAL_SRC_FILES:=                     \
-	OMX.cpp                       \
+		OMX.cpp                       \
         OMXComponentBase.cpp          \
         OMXNodeInstance.cpp           \
         OMXMaster.cpp
@@ -33,7 +33,7 @@ LOCAL_SHARED_LIBRARIES :=       \
         libcutils               \
         libstagefright_color_conversion
 
-LOCAL_LDLIBS += -lbinder -lmedia -lutils -lui -lcutils
+LOCAL_LDLIBS +=-L$(TOP)/lib -lbinder -lmedia -lutils -lui -lcutils
 
 ifneq ($(BUILD_WITHOUT_PV),true)
 LOCAL_SHARED_LIBRARIES += \
