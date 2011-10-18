@@ -24,7 +24,7 @@ SYS_INCLUDE := \
 	$(TOP_INCLUDE)/external/tremolo										\
 	$(TOP_INCLUDE)/external/libvpx										\
 	$(TOP_INCLUDE)/external/openssl/include								\
-	$(TOP_INCLUDE)/out/target/product/crespo/obj/include/ 	
+	$(TOP_INCLUDE)/
 
 
 APP_INCLUDE := \
