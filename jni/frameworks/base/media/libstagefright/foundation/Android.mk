@@ -14,7 +14,7 @@ LOCAL_SRC_FILES:=               \
     hexdump.cpp
 
 LOCAL_C_INCLUDES:= \
-    $(TOP)/frameworks/base/include/media/stagefright/foundation
+    $(TOP_INCLUDE)/frameworks/base/include/media/stagefright/foundation
 
 LOCAL_SHARED_LIBRARIES := \
         libbinder         \

@@ -31,7 +31,7 @@ LOCAL_CFLAGS := \
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/src \
     $(LOCAL_PATH)/include \
-    $(TOP)/frameworks/base/include/media/stagefright/openmax \
+    $(TOP_INCLUDE)/frameworks/base/include/media/stagefright/openmax \
     $(TOP)/frameworks/base/media/libstagefright/include
 
 include $(BUILD_STATIC_LIBRARY)

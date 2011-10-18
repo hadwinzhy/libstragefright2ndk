@@ -1,12 +1,14 @@
 #my variable start by Hadwin
 
 TOP:=$(call my-dir)
+
+TOP_INCLUDE:= $(TOP)/include
+
 LOCAL_PATH:= $(call my-dir)/frameworks/base/media/libstagefright
 
 include $(CLEAR_VARS)
-#in ./build/core/main.mk:286
+#used in ./build/core/main.mk:286
 BUILD_WITHOUT_PV := true
-# in aacenc/Android.mk
 
 ####
 #1. external/tremolo used in  OggExtractor.cpp:36
@@ -14,13 +16,15 @@ BUILD_WITHOUT_PV := true
 #2. out/target/product/crespo/obj/include/ used in StagefrightMediaScanner.cpp:27
 ##
 SYS_INCLUDE := \
-	$(TOP)/frameworks/base/include/			\
-	$(TOP)/system/core/include/			\
-	$(TOP)/hardware/libhardware/include/		\
-	$(TOP)/external/tremolo				\
-	$(TOP)/external/libvpx				\
-	$(TOP)/external/openssl/include			\
-	$(TOP)/out/target/product/crespo/obj/include/ 	
+	$(TOP_INCLUDE)/frameworks/base/include/								\
+	$(TOP_INCLUDE)/frameworks/base/include/media/stagefright/openmax	\
+	$(TOP_INCLUDE)/frameworks/base/include/media/stagefright/foundation	\
+	$(TOP_INCLUDE)/system/core/include/									\
+	$(TOP_INCLUDE)/hardware/libhardware/include/						\
+	$(TOP_INCLUDE)/external/tremolo										\
+	$(TOP_INCLUDE)/external/libvpx										\
+	$(TOP_INCLUDE)/external/openssl/include								\
+	$(TOP_INCLUDE)/out/target/product/crespo/obj/include/ 	
 
 
 APP_INCLUDE := \
@@ -79,8 +83,8 @@ LOCAL_SRC_FILES:=                         \
         string.cpp
 
 LOCAL_C_INCLUDES:= \
-        $(TOP)/frameworks/base/include/media/stagefright/openmax \
-        $(TOP)/external/tremolo \
+        $(TOP_INCLUDE)/frameworks/base/include/media/stagefright/openmax \
+        $(TOP_INCLUDE)/external/tremolo \
         $(TOP)/frameworks/base/media/libstagefright/rtsp
 
 LOCAL_SHARED_LIBRARIES := \
