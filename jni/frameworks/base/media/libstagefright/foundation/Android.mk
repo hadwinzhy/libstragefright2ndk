@@ -24,12 +24,19 @@ LOCAL_SHARED_LIBRARIES := \
         libui             \
         libsonivox        \
         libvorbisidec     \
-        libsurfaceflinger_client \
         libcamera_client
 
 LOCAL_CFLAGS += -Wno-multichar
 
-LOCAL_LDFLAGS +=-llog -L$(TOP)/lib -lbinder -lmedia -lutils -lcutils -lui -lsonivox -lvorbisidec -lsurfaceflinger_client -lcamera_client
+LOCAL_LDFLAGS +=-L$(TOP)/lib 	\
+	-llog			\
+	-lutils 		\
+#	-lbinder		\
+#	-lcutils 		\
+#	-lsonivox		\
+#	-lvorbisidec		\
+#	-lsurfaceflinger_client \
+#	-lcamera_client
 
 
 LOCAL_MODULE:= libstagefright_foundation

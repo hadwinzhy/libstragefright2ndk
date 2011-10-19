@@ -33,10 +33,12 @@ namespace android {
 StagefrightMetadataRetriever::StagefrightMetadataRetriever()
     : mParsedMetaData(false),
       mAlbumArt(NULL) {
+
     LOGV("StagefrightMetadataRetriever()");
 
     DataSource::RegisterDefaultSniffers();
     CHECK_EQ(mClient.connect(), OK);
+
 }
 
 StagefrightMetadataRetriever::~StagefrightMetadataRetriever() {
@@ -44,8 +46,8 @@ StagefrightMetadataRetriever::~StagefrightMetadataRetriever() {
 
     delete mAlbumArt;
     mAlbumArt = NULL;
-
-    mClient.disconnect();
+    //it's omx client we don't need by Hadwin
+//    mClient.disconnect();
 }
 
 status_t StagefrightMetadataRetriever::setDataSource(const char *uri) {
@@ -104,7 +106,6 @@ status_t StagefrightMetadataRetriever::setDataSource(
 
     return OK;
 }
-
 static VideoFrame *extractVideoFrameWithCodecFlags(
         OMXClient *client,
         const sp<MetaData> &trackMeta,

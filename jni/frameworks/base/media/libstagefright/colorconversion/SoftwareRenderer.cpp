@@ -42,6 +42,7 @@ SoftwareRenderer::SoftwareRenderer(
       mDecodedHeight(decodedHeight),
       mFrameSize(mDecodedWidth * mDecodedHeight * 2),  // RGB565
       mIndex(0) {
+	/*
     mMemoryHeap = new MemoryHeapBase("/dev/pmem_adsp", 2 * mFrameSize);
     if (mMemoryHeap->heapID() < 0) {
         LOGI("Creating physical memory heap failed, reverting to regular heap.");
@@ -51,11 +52,11 @@ SoftwareRenderer::SoftwareRenderer(
         pmemHeap->slap();
         mMemoryHeap = pmemHeap;
     }
-
+	*/
     CHECK(mISurface.get() != NULL);
     CHECK(mDecodedWidth > 0);
     CHECK(mDecodedHeight > 0);
-    CHECK(mMemoryHeap->heapID() >= 0);
+//  CHECK(mMemoryHeap->heapID() >= 0);
     CHECK(mConverter.isValid());
 
     uint32_t orientation;
@@ -67,7 +68,7 @@ SoftwareRenderer::SoftwareRenderer(
         default: orientation = ISurface::BufferHeap::ROT_0; break;
     }
 
-    ISurface::BufferHeap bufferHeap(
+    /*ISurface::BufferHeap bufferHeap(
             mDisplayWidth, mDisplayHeight,
             mDecodedWidth, mDecodedHeight,
             PIXEL_FORMAT_RGB_565,
@@ -80,7 +81,9 @@ SoftwareRenderer::SoftwareRenderer(
         LOGW("ISurface failed to register buffers (0x%08x)", err);
     }
 
-    mInitCheck = err;
+    mInitCheck = err; */
+
+    mInitCheck = OK;
 }
 
 SoftwareRenderer::~SoftwareRenderer() {

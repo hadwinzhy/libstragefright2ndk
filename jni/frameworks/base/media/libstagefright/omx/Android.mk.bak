@@ -29,11 +29,14 @@ LOCAL_SHARED_LIBRARIES :=       \
         libbinder               \
         libmedia                \
         libutils                \
-        libui                   \
         libcutils               \
         libstagefright_color_conversion
 
-LOCAL_LDLIBS +=-L$(TOP)/lib -lbinder -lmedia -lutils -lui -lcutils
+LOCAL_LDLIBS +=-L$(TOP)/lib 	\
+	-lbinder 		\
+	-lmedia 		\
+	-lutils 		\
+	-lcutils	
 
 ifneq ($(BUILD_WITHOUT_PV),true)
 LOCAL_SHARED_LIBRARIES += \

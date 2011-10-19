@@ -231,7 +231,11 @@ void AudioPlayer::reset() {
     while (tmp.promote() != NULL) {
         usleep(1000);
     }
-    IPCThreadState::self()->flushCommands();
+
+    /*
+     *removed by Hadwin in order to remove libbinder.so
+    */
+    //IPCThreadState::self()->flushCommands();
 
     mNumFramesPlayed = 0;
     mPositionTimeMediaUs = -1;
