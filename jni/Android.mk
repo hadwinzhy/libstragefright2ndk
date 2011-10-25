@@ -21,10 +21,12 @@ SYS_INCLUDE := \
 	$(TOP_INCLUDE)/frameworks/base/include/media/stagefright/foundation	\
 	$(TOP_INCLUDE)/system/core/include/					\
 	$(TOP_INCLUDE)/hardware/libhardware/include/				\
-	$(TOP_INCLUDE)/external/tremolo						\
 	$(TOP_INCLUDE)/external/libvpx						\
 	$(TOP_INCLUDE)/external/openssl/include					\
 	$(TOP_INCLUDE)/
+
+3RD_PARTY_INCLUDE := \
+	$(TOP)/3rd_party/tremolo
 
 
 APP_INCLUDE := \
@@ -33,7 +35,8 @@ APP_INCLUDE := \
 
 TARGET_C_INCLUDES += 	\
 	$(SYS_INCLUDE)	\
-	$(APP_INCLUDE)
+	$(APP_INCLUDE)	\
+	$(3RD_PARTY_INCLUDE)
 
 TARGET_CFLAGS += -Wno-multichar  -DHAVE_PTHREADS
 
@@ -160,4 +163,4 @@ include $(BUILD_SHARED_LIBRARY)
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 #which for libvorbisidec.so
-include $(TOP)/tremolo/Android.mk
+include $(TOP)/3rd_party/tremolo/Android.mk

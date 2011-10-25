@@ -6,10 +6,7 @@ LOCAL_MODULE    := vpx
 
 LOCAL_SRC_FILES := libvpx.a
 
-LOCAL_EXPORT_C_INCLUDES := \
-        $(TOP)/external/libvpx \
-        $(TOP)/external/libvpx/vpx_codec \
-        $(TOP)/external/libvpx/vpx_ports
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/libvpx 
 
 
 include $(PREBUILT_STATIC_LIBRARY)
