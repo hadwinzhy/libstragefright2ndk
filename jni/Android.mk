@@ -16,14 +16,14 @@ BUILD_WITHOUT_PV := true
 #2. out/target/product/crespo/obj/include/ used in StagefrightMediaScanner.cpp:27
 ##
 SYS_INCLUDE := \
-	$(TOP_INCLUDE)/frameworks/base/include/					\
-	$(TOP_INCLUDE)/frameworks/base/include/media/stagefright/openmax	\
-	$(TOP_INCLUDE)/frameworks/base/include/media/stagefright/foundation	\
-	$(TOP_INCLUDE)/system/core/include/					\
-	$(TOP_INCLUDE)/hardware/libhardware/include/				\
-	$(TOP_INCLUDE)/external/libvpx						\
-	$(TOP_INCLUDE)/external/openssl/include					\
-	$(TOP_INCLUDE)/
+	$(TOP_INCLUDE)/frameworks/base/include/				\
+	$(TOP_INCLUDE)/system/core/include/				\
+	$(TOP_INCLUDE)/							\
+	$(TOP_INCLUDE)/external/libvpx					\
+	$(TOP_INCLUDE)/frameworks/base/include/media/stagefright/openmax\
+	$(TOP_INCLUDE)/frameworks/base/include/media/stagefright/foundation\
+	$(TOP_INCLUDE)/hardware/libhardware/include/			\
+	$(TOP_INCLUDE)/external/openssl/include				\
 
 3RD_PARTY_INCLUDE := \
 	$(TOP)/3rd_party/tremolo
@@ -46,45 +46,27 @@ TARGET_CFLAGS += -Wno-multichar  -DHAVE_PTHREADS
 include $(TOP)/frameworks/base/media/libstagefright/codecs/common/Config.mk
 
 LOCAL_SRC_FILES:=                         \
-        AMRExtractor.cpp                  \
-        AMRWriter.cpp                     \
-        DataSource.cpp                    \
-        ESDS.cpp                          \
-        FileSource.cpp                    \
-        HTTPStream.cpp                    \
-        JPEGSource.cpp                    \
+	MediaExtractor.cpp		  \
         MP3Extractor.cpp                  \
         MPEG2TSWriter.cpp                 \
         MPEG4Extractor.cpp                \
         MPEG4Writer.cpp                   \
-        MediaBuffer.cpp                   \
-        MediaBufferGroup.cpp              \
-        MediaDefs.cpp                     \
-        MediaExtractor.cpp                \
-        MediaSource.cpp                   \
-        MetaData.cpp                      \
-        NuCachedSource2.cpp               \
-        NuHTTPDataSource.cpp              \
-        OggExtractor.cpp                  \
-        SampleIterator.cpp                \
+	OggExtractor.cpp                  \
+        AMRExtractor.cpp		  \
+	MetaData.cpp			  \
+	MediaSource.cpp			  \
+	Utils.cpp			  \
+	MediaBuffer.cpp			  \
+	MediaDefs.cpp			  \
+	FileSource.cpp			  \
+	MediaBufferGroup.cpp		  \
+	ESDS.cpp			  \
         SampleTable.cpp                   \
-        ShoutcastSource.cpp               \
-        ThreadedSource.cpp                \
-        ThrottledSource.cpp               \
-        TimeSource.cpp                    \
-        TimedEventQueue.cpp               \
-        Utils.cpp                         \
-        WAVExtractor.cpp                  \
-        avc_utils.cpp                     \
-        string.cpp			  \
-#	CameraSource.cpp                  \	
-#	StagefrightMediaScanner.cpp       \
-#	AudioPlayer.cpp                   \
-#       AudioSource.cpp                   \
-#	AwesomePlayer.cpp                 \
-#	OMXClient.cpp                     \
-#       OMXCodec.cpp                      \
-#	StagefrightMetadataRetriever.cpp  \
+	SampleIterator.cpp		  \
+	DataSource.cpp			  \
+	WAVExtractor.cpp		  \
+	avc_utils.cpp			  \
+
 
 
 LOCAL_C_INCLUDES:= \
@@ -103,13 +85,6 @@ LOCAL_SHARED_LIBRARIES := \
         libsurfaceflinger_client \
         libcamera_client
 
-LOCAL_LDFLAGS +=-llog 	\
-	-L$(TOP)/lib 	\
-	-lutils		\
-	-lcutils	\
-#	-lmedia		\
-#	-lbinder	\
-#	-lvorbisidec    \	
 
 LOCAL_STATIC_LIBRARIES := \
         libstagefright_aacdec \
@@ -139,7 +114,13 @@ LOCAL_SHARED_LIBRARIES += \
         libstagefright_avc_common \
         libstagefright_foundation \
         libstagefright_color_conversion \
-	libvorbisidec
+		libvorbisidec
+
+LOCAL_LDFLAGS +=-llog 	\
+	-L$(TOP)/lib 	\
+	-lutils		\
+#	-lcutils	\
+
 
 ifeq ($(TARGET_OS)-$(TARGET_SIMULATOR),linux-true)
         LOCAL_LDLIBS += -lpthread -ldl

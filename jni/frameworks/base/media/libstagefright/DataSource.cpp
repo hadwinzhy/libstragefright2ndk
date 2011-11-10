@@ -113,11 +113,14 @@ sp<DataSource> DataSource::CreateFromURI(
     if (!strncasecmp("file://", uri, 7)) {
         source = new FileSource(uri + 7);
     } else if (!strncasecmp("http://", uri, 7)) {
-        sp<NuHTTPDataSource> httpSource = new NuHTTPDataSource;
+      /*sp<NuHTTPDataSource> httpSource = new NuHTTPDataSource;
+        //for DLNA no http, add by Hadwin
         if (httpSource->connect(uri, headers) != OK) {
             return NULL;
         }
         source = new NuCachedSource2(httpSource);
+      */
+        return NULL;
     } else {
         // Assume it's a filename.
         source = new FileSource(uri);

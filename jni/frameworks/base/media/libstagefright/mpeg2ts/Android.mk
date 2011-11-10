@@ -19,4 +19,6 @@ ifeq ($(TARGET_ARCH),arm)
     LOCAL_CFLAGS += -Wno-psabi
 endif
 
+LOCAL_STATIC_LIBRARIES := libstagefright_mpeg2ts
+
 include $(BUILD_STATIC_LIBRARY)

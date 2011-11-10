@@ -82,11 +82,12 @@ sp<MetaData> MPEG2TSSource::getFormat() {
     sp<MetaData> meta = mImpl->getFormat();
 
     int64_t durationUs;
+    /*no for live source add by Hadwin
     if (mExtractor->mLiveSource != NULL
             && mExtractor->mLiveSource->getDuration(&durationUs)) {
         meta->setInt64(kKeyDuration, durationUs);
     }
-
+    */
     return meta;
 }
 
@@ -238,19 +239,24 @@ void MPEG2TSExtractor::seekTo(int64_t seekTimeUs) {
     if (mLiveSource == NULL) {
         return;
     }
+    /*no NuCachedSource add by Hadwin
+    if (mDataSource->flags() & DataSource::kIsCachingDataSource) {
+      static_cast<NuCachedSource2 *>(mDataSource.get())->suspend();
+      
+    }
+    */
+    
+    //    if (mLiveSource->seekTo(seekTimeUs)) {
+    //mParser->signalDiscontinuity(true  /* isSeek */);
+    //    mOffset = 0;
+    //}
+
 
     if (mDataSource->flags() & DataSource::kIsCachingDataSource) {
-        static_cast<NuCachedSource2 *>(mDataSource.get())->suspend();
-    }
-
-    if (mLiveSource->seekTo(seekTimeUs)) {
-        mParser->signalDiscontinuity(true  /* isSeek */);
-        mOffset = 0;
-    }
-
-    if (mDataSource->flags() & DataSource::kIsCachingDataSource) {
+      /*No NuCachedSource, add by Hadwin
         static_cast<NuCachedSource2 *>(mDataSource.get())
             ->clearCacheAndResume();
+      */
     }
 }
 
@@ -258,11 +264,11 @@ uint32_t MPEG2TSExtractor::flags() const {
     Mutex::Autolock autoLock(mLock);
 
     uint32_t flags = CAN_PAUSE;
-
+    /*no for live source
     if (mLiveSource != NULL && mLiveSource->isSeekable()) {
         flags |= CAN_SEEK_FORWARD | CAN_SEEK_BACKWARD | CAN_SEEK;
     }
-
+    */
     return flags;
 }
 
